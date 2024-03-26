@@ -1,6 +1,6 @@
 # unamefetch
 
-`uname -a`, but printed in a nicer format.
+`uname -a` in a nicer format, written in x86 assembly.
 
 ```
 $ nasm -f elf unamefetch.asm
