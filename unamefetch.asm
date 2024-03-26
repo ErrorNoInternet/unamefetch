@@ -6,9 +6,7 @@
 section .data
 	prefix db 0x1b, "[1m", 0x1b, "[34m>", 0x1b, "[37m "
 	prefix_len equ $ - prefix
-
 	newline db 0xa
-	newline_len equ 1
 
 	value sysname, "sysname: "
 	value release, "release: "
@@ -43,7 +41,7 @@ section .text
 	print_l prefix
 	print_l %1
 	print uname_result + %2 * UTSNAME_SIZE, UTSNAME_SIZE
-	print_l newline
+	print newline, 1
 %endmacro
 
 _start:
