@@ -3,8 +3,8 @@
 `uname -a`, but printed in a nicer format.
 
 ```
-$ nasm -f elf64 unamefetch.asm
-$ ld unamefetch.o -o unamefetch
+$ nasm -f elf unamefetch.asm
+$ ld -m elf_i386 unamefetch.o -o unamefetch
 $ ./unamefetch
 > sysname: Linux
 > release: 6.7.10

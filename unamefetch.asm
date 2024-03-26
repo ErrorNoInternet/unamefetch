@@ -16,9 +16,9 @@ section .data
 	value machine, "machine: "
 	value version, "version: "
 
-	SYS_EXIT equ 60
-	SYS_UNAME equ 63
-	SYS_WRITE equ 1
+	SYS_EXIT equ 1
+	SYS_UNAME equ 122
+	SYS_WRITE equ 4
 	UTSNAME_SIZE equ 65
 
 section .bss
@@ -28,11 +28,11 @@ section .text
 	global _start
 
 %macro print 2
-	mov rax, SYS_WRITE
-	mov rdi, 1
-	mov rsi, %1
-	mov rdx, %2
-	syscall
+	mov eax, SYS_WRITE
+	mov ebx, 1
+	mov ecx, %1
+	mov edx, %2
+	int 0x80
 %endmacro
 
 %macro print_l 1
@@ -47,9 +47,9 @@ section .text
 %endmacro
 
 _start:
-	mov rax, SYS_UNAME
-	mov rdi, uname_result
-	syscall
+	mov eax, SYS_UNAME
+	mov ebx, uname_result
+	int 0x80
 
 	line sysname, 0
 	line release, 2
@@ -58,5 +58,5 @@ _start:
 	line version, 3
 
 	mov eax, SYS_EXIT
-	xor rdi, rdi
-	syscall
+	xor ebx, ebx
+	int 0x80
