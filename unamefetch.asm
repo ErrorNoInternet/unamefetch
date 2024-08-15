@@ -33,13 +33,9 @@ section .text
 	int 0x80
 %endmacro
 
-%macro print_l 1
-	print %1, %1_len
-%endmacro
-
 %macro line 2
-	print_l prefix
-	print_l %1
+	print prefix, prefix_len
+	print %1, %1_len
 	print uname_result + %2 * UTSNAME_SIZE, UTSNAME_SIZE
 	print newline, 1
 %endmacro
